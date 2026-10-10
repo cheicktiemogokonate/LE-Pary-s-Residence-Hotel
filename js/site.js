@@ -1,12 +1,12 @@
 (() => {
     const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
-    const T = ['07 88 980 111', '07 57 869 627', '01 03 505 896'], tel = n => 'tel:+225' + n.replace(/ /g, '');
-    const P = [['index.html', 'Accueil'], ['chambres.html', 'Chambres & espaces'], ['carte.html', 'Carte'], ['piscine-soirees.html', 'Piscine & soirées']];
+    const T = ['07 88 980 111', '07 57 869 627', '01 03 505 896', '07 09 39 80 84'], tel = n => 'tel:+225' + n.replace(/ /g, '');
+    const P = [['index.html', 'Accueil'], ['chambres.html', 'Chambres & espaces'], ['carte.html', 'Carte'], ['piscine-soirees.html', 'Piscine & soirées'], ['contact.html', 'Contact & Accès']];
     const cur = location.pathname.split('/').pop() || 'index.html';
     const links = P.map(p => `<a href="${p[0]}"${p[0] == cur ? ' class="on"' : ''}>${p[1]}</a>`).join('');
     document.body.insertAdjacentHTML('afterbegin', `<header class="nav"><a href="index.html" class="logo"><img src="assets/img/logo.png" alt="Hôtel Pary's Residence HPR"></a><nav id="nv">${links}<button class="btn p" data-book>Réserver</button></nav><button class="btn burger" id="bg">Menu</button></header>`);
-    document.body.insertAdjacentHTML('beforeend', `<footer><div class="w ft"><div><b>Hôtel Pary’s Residence</b><p>★★★ · Toumodi<br>Derrière la boulangerie du Grand Marché</p></div><div>${T.map(n => `<a href="${tel(n)}">+225 ${n}</a>`).join('<br>')}</div><div>${P.map(p => `<a href="${p[0]}">${p[1]}</a>`).join('<br>')}</div></div></footer><div class="callbar"><a class="btn" href="${tel(T[0])}">Appeler</a><button class="btn p" data-book>Réserver</button></div>`);
-    $$('[data-cc]').forEach(c => { c.className = 'cc'; c.innerHTML = T.map((n, i) => `<a class="card" href="${tel(n)}"><small>${i ? 'Réservation' : 'Réception & réservation'}</small><b>+225 ${n}</b><span>Appeler</span></a>`).join('') + `<div class="card"><small>Où nous trouver</small><b>Toumodi</b><span>Derrière la boulangerie du Grand Marché</span></div>` });
+    document.body.insertAdjacentHTML('beforeend', `<footer><div class="w ft"><div><b>Hôtel Pary’s Residence</b><p>★★★ · Toumodi<br>Derrière la boulangerie du Grand Marché<br>Quartier Résidentiel</p></div><div>${T.map(n => `<a href="${tel(n)}">+225 ${n}</a>`).join('<br>')}</div><div>${P.map(p => `<a href="${p[0]}">${p[1]}</a>`).join('<br>')}</div></div></footer><div class="callbar"><a class="btn" href="${tel(T[0])}">Appeler</a><button class="btn p" data-book>Réserver</button></div>`);
+    $$('[data-cc]').forEach(c => { c.className = 'cc'; c.innerHTML = T.map((n, i) => `<a class="card" href="${tel(n)}"><small>${i ? 'Réservation' : 'Réception & réservation'}</small><b>+225 ${n}</b><span>Appeler</span></a>`).join('') + `<a class="card" href="contact.html"><small>Où nous trouver</small><b>Toumodi</b><span>Derrière la boulangerie · Voir plan & Maps ↗</span></a>` });
     $$('[data-tel]').forEach(c => c.innerHTML = T.map(n => `<a href="${tel(n)}">+225 ${n}</a>`).join(''));
     $('#bg').onclick = () => { const o = $('#nv').classList.toggle('open'); $('#bg').textContent = o ? 'Fermer' : 'Menu' };
     $$('[data-split]').forEach(h => { let d = 0; h.innerHTML = h.innerHTML.split(/(<em>.*?<\/em>|\s+)/).filter(x => x.trim()).map(w => `<span class="sw"><span style="animation-delay:${(d++) * .12 + .1}s">${w}</span></span>`).join(' ') });
